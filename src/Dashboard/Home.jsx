@@ -3,8 +3,10 @@ import Header from '../Components/Header';
 import Footer from '../Components/Footer/Footer';
 import Spinner from '../Components/Spinner';
 import Product from '../Components/Product';
-import { Grid2, Typography } from '@mui/material';
-
+import { Box, Grid2, Typography } from '@mui/material';
+import SideBar from '../Components/SideBar';
+import Banner from '../Components/Banner';
+// import WhatsApp from '../Components/WhatsApp'
 // const data = [
 //     {
 //         image: "https://industry.plantautomation-technology.com/articles/images/heat-exchangers.jpg",
@@ -36,11 +38,11 @@ function Home() {
     const API_URL = "https://fakestoreapi.com/products";
     const [loading, setLoading] = useState(false);
     const [posts, setPosts] = useState([]
-    //     () => {
-    //     // const savedPosts = localStorage.getItem("posts");
-    //     // return savedPosts ? JSON.parse(savedPosts) : [];
-    // }
-);
+        //     () => {
+        //     // const savedPosts = localStorage.getItem("posts");
+        //     // return savedPosts ? JSON.parse(savedPosts) : [];
+        // }
+    );
 
     async function fetchProductData() {
         setLoading(true);
@@ -49,35 +51,45 @@ function Home() {
             const data = await res.json();
             setPosts(data);
             // localStorage.setItem("posts", JSON.stringify(data)); // Save data to localStorage
-        } catch (error) {
+        }
+        catch (error) {
             console.log("error");
         }
         setLoading(false);
     }
 
     useEffect(() => {
-        
-            fetchProductData();
-        
+
+        fetchProductData();
+
     }, []); // Only fetch data if there are no posts in the state
 
     return (
         <div>
             <Header />
-            {loading ? <Spinner /> : 
-            posts.length > 0 ? 
-             (
-               <Grid2 className='grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-6xl p-2 mx-auto space-y-10 space-x-5 min-h-[80vh] '>
-               {posts.map((post) => (
-                 <Product key={post.id} post={post} />
-               ))}
-             </Grid2>
-            ) :
-            <Grid2 className='flex justify-center items-center'>
-                <Typography>No Data Found</Typography>
+            <Banner />
+            <Grid2 container spacing={2} className="min-h-[80vh] p-2">
+                <Grid2 item p={3} xs={12} md={4} lg={6}>
+                    <SideBar />
+                </Grid2>
+                <Grid2 container className='flex justify-end min-h-[80vh] p-4'>
+                    {loading ? <Spinner /> :
+                        posts.length > 0 ?
+                            (
+                                <Grid2 className='grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-7xl p-2 space-y-10 space-x-5 min-h-[80vh] bg-white'>
+                                    {posts.map((post) => (
+                                        <Product key={post.id} post={post} />
+                                    ))}
+                                </Grid2>
+                            ) :
+                            <Grid2 className='flex justify-center items-center'>
+                                <Typography>No Data Found</Typography>
+                            </Grid2>
+                    }
+                </Grid2>
+                {/* <WhatsApp /> */}
             </Grid2>
-            }
-            {/* <Footer /> */}
+            <Footer />
         </div>
     );
 }

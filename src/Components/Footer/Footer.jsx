@@ -25,7 +25,7 @@ function Footer() {
                                 whiteSpace: "nowrap",
                             }}
                         >
-                            This is a running text using React.js and Material-UI.
+                            Foxboro Instrument Since 1920 mob. 9457889234
                         </Typography>
                     </Box>
                 </Grid2>

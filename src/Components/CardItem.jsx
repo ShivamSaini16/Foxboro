@@ -11,35 +11,34 @@ function CardItem({ item, index }) {
 
   const removeFromCart = () => {
     dispatch(remove(item.id));
-    toast.success("Item remove")
+    toast.error("Item remove")
   }
   return (
     <>
-      <Grid2 container className="p-5 gap-4 md:grid-cols-2">
+      <div className="p-5 gap-10 flex" bgcolor={'yellow'}>
         {/* Image Section */}
-        <Grid2 xs={12} md={6} className="h-[180px]">
-          <img src={item.image} alt="Item Image" className="h-full w-full object-cover" />
-        </Grid2>
 
-        {/* Content Section */}
-        <Grid2 xs={12} md={6}>
-          <Grid2 container direction="column" className="gap-4">
-            {/* Title and Description */}
-            <Box className="grid font-bold gap-y-2">
-              <Typography className="mb-2">{item.title}</Typography>
-              <Typography className="mb-4">{item.description.split(" ").slice(0, 10).join(" ") + "..."}</Typography>
-            </Box>
+        <div className="h-[180px] w-[25%] bg-white flex justify-center items-center ">
+          <img src={item.image} alt="Item Image" className="h-full w-full object-contain" />
+        </div>
 
-            {/* Price and Delete Button */}
-            <Box className="flex justify-between items-center">
-              <Typography className="mr-4">{item.price}</Typography>
-              <div onClick={removeFromCart} className="cursor-pointer">
-                <DeleteIcon />
-              </div>
-            </Box>
-          </Grid2>
-        </Grid2>
-      </Grid2>
+        <div className="gap-4 columns-1 w-[35vh] ">
+          {/* Title and Description */}
+          <span className="flex flex-col gap-3">
+            <h1 className="font-bold">{item.title}</h1>
+            <p className="mb-4 break whitespace-normals">{item.description.split(" ").slice(0, 10).join(" ") + "..."}</p>
+          </span>
+
+          {/* Price and Delete Button */}
+          <span className="flex justify-between items-center p-3">
+            <Typography className="mr-4 " color='green'>${item.price}</Typography>
+            <div onClick={removeFromCart} className="cursor-pointer">
+              <DeleteIcon sx={{color:'red'}}/>
+            </div>
+          </span>
+        </div>
+      </div>
+      <hr class="border-t border-blue-900 my-4" />
 
     </>
   )

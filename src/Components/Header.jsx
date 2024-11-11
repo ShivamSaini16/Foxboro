@@ -7,6 +7,9 @@ import { useSelector } from 'react-redux';
 
 const Header = () => {
     // Define state for category and search input
+    const {items} = useSelector((state) => state?.cart)
+    console.log("----cartSTATE--",items)
+    console.log("Number of items in cart:", items.length);
     const [category, setCategory] = useState('');
     const [searchText, setSearchText] = useState('');
 
@@ -22,11 +25,11 @@ const Header = () => {
     };
 
 
-    const cart = useSelector((state) => state)
-    console.log("-------------------", cart)
+    // const cart = useSelector((state) => state)
+    // console.log("-------------------", cart)
     return (
         <div>
-            <Grid2 container display={'flex'} justifyContent={'space-evenly'} bgcolor={'#3c3154'} p={2}>
+            <Grid2 container display={'flex'} justifyContent={'space-evenly'} bgcolor={'#3c3154'} p={2} >
                 <Typography variant='h4' color='white'>Foxboro Instruments</Typography>
 
                 <Grid2 size={{ xs: 12, md: 12, lg: 5 }} display="flex" alignItems="center">
@@ -98,9 +101,10 @@ const Header = () => {
                     </Link>
                     <NavLink to='/Cart' style={{ position: 'relative', textDecoration: 'none' }}>
                         <div style={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
-                            <ShoppingCartIcon sx={{ color: 'white', width: '100px', height: '30px' }} />
-                            {
-                                // Check if cart has items and show the length
+
+                            <ShoppingCartIcon sx={{ color: 'white', width: '58px', height: '32px' }} />
+                            <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 end-0 dark:border-gray-900">{items.length}</div>
+                            {/* <div> {
                                 cart.items && cart.items.length > 0 && (
                                     <span
                                         style={{
@@ -115,10 +119,11 @@ const Header = () => {
                                             fontSize: '14px'
                                         }}
                                     >
-                                        {cart.items.length} {/* Display number of items */}
+                                        {cart.items.length}
                                     </span>
                                 )
                             }
+                            </div> */}
                         </div>
                     </NavLink>
 
