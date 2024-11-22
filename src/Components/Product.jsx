@@ -98,8 +98,8 @@ function Product({ post }) {
       <Grid2 item sx={{ width: '100%', pl: 2 }}>
         <Typography variant='h5' className='text-green-400 font-semibold'>$ {post.price}</Typography>
       </Grid2>
-      <Grid2 className='flex gap-x-8 p-2'>
-        <Button variant='outlined'  class='text-white  pr-6 pl-6 pt-1 py-1 rounded-lg border-blue-900 bg-blue-900  hover:bg-orange-500 hover:text-white transition duration-100 ease-in' >Buy Now</Button>
+      <Grid2 className='flex gap-x-3 p-2 '>
+        <Button variant='outlined'  class='text-white  pr-5 pl-5 pt-1 py-1 rounded-lg border-blue-900 bg-blue-900  hover:bg-orange-500 hover:text-white transition duration-100 ease-in' >Buy Now</Button>
         <Grid2>
           {cart.some((p) => p.id === post.id) ? (
             <Button

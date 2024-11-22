@@ -1,76 +1,19 @@
-// import { Button, Grid2, Typography } from "@mui/material";
-// import { useEffect, useState } from "react";
-// import { useSelector } from "react-redux";
-// import { Link } from "react-router-dom";
-
-
-// const cart = () => {
-//   const cart = useSelector((state) => state.cart)
-//   const [totalAmount,setTotalAmount] = useState(0);
-
-// useEffect(()=>{
-//   setTotalAmount(cart.reduce((acc,curr)=> acc+curr.price,0));
-// },[cart])
-
-//   return (
-
-//     <div>
-//       {
-//         cart.length > 0 ?
-//           (
-//             <Grid2>
-//               {
-//                 cart.map((item, index) => {
-//                   return <Carditem key={item.id} item={item} itemIndex={index} />
-//                 })
-//               }
-
-//               <Grid2>
-//                 <Grid2>
-//                   <Typography>Your Cart</Typography>
-//                   <Typography>Summary</Typography>
-//                   <Typography>Total Item: {cart.length}</Typography>
-//                 </Grid2>
-//               </Grid2>
-//               <Grid2>
-//                 <Typography>Total Amount: ${totalAmount}</Typography>
-//                 <Button>Check Out</Button>
-//               </Grid2>
-//             </Grid2>
-
-//           ) :
-//           (
-//             <Grid2>
-//               <Typography>The cart is empty</Typography>
-//               <Link to='/'>
-//                 <Button>Shop now</Button>
-//               </Link>
-//             </Grid2>
-//           )
-//       }
-//     </div>
-//   )
-
-
-// }
-
-
-import { Box, Button, Grid2, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import CardItem from '../Components/CardItem'; // Make sure to import this component
+import CardItem from '../Components/CardItem'; // Import CardItem component
 import Header from "../Components/Header";
 import Footer from "../Components/Footer/Footer";
 
+
 const Cart = () => {
-  const cart = useSelector((state) => state?.cart?.items);  // Ensure correct selector
+  const cart = useSelector((state) => state?.cart?.items); // Use Redux state for cart items
   const [totalAmount, setTotalAmount] = useState(0);
 
+  // Calculate total amount whenever the cart changes
   useEffect(() => {
-    if (cart.length > 0) {
-      setTotalAmount(cart.reduce((acc, curr) => acc + (curr.price || 0), 0));
-    }
+    setTotalAmount(cart.reduce((acc, item) => acc + (item.price * item.quantity), 0));
   }, [cart]);
 
   return (
@@ -78,31 +21,31 @@ const Cart = () => {
       <Header />
       <div className="w-full h-full justify-center items-center flex">
         {cart.length > 0 ? (
-          <div className=' flex gap-6'>
-            <Grid2 size={{ lg: 6 }}>
+          <div className='flex gap-6'>
+            <div>
               {cart.map((item, index) => (
                 <CardItem key={item.id} item={item} itemIndex={index} />
               ))}
-            </Grid2>
-            <Box className='flex flex-col auto-rows-max p-4 gap-y-7 justify-between'>
-              <Box class='inline-block w-fit h-fit'>
-                <Typography class="text-3xl text-green-700 font-semibold">Your Cart</Typography>
-                <Typography class="text-6xl text-green-700 font-semibold">Summary</Typography>
-                <Typography class='text-2xl'>Total Items: {cart.length}</Typography>
+            </div>
+            <Box className='flex flex-col p-4 gap-y-7'>
+              <Box>
+                <Typography className="text-3xl text-green-700 font-semibold">Your Cart</Typography>
+                <Typography className="text-6xl text-green-700 font-semibold">Summary</Typography>
+                <Typography className="text-2xl">Total Items: {cart.length}</Typography>
               </Box>
-              <Box class=' h-fit bottom-0 w-full '>
-                <Typography >Total Amount: ${totalAmount}</Typography>
-                <Button variant="contained" color="primary" fullWidth >Check Out</Button>
+              <Box>
+                <Typography>Total Amount: ${totalAmount.toFixed(2)}</Typography>
+                <Button variant="contained" color="primary" fullWidth>Check Out</Button>
               </Box>
             </Box>
           </div>
         ) : (
-          <Grid2>
+          <div className="text-center">
             <Typography>The cart is empty</Typography>
             <Link to='/'>
               <Button>Shop now</Button>
             </Link>
-          </Grid2>
+          </div>
         )}
       </div>
       <Footer />

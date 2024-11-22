@@ -37,9 +37,9 @@ const Banner = () => {
 
   return (
     <div className="relative flex justify-center items-center p-4 space-x-4 w-screen">
-      <IconButton onClick={handlePrev} className="absolute left-0 z-10">
+      {/* <IconButton onClick={handlePrev} className="absolute left-0 z-10">
         <ArrowBackIosIcon />
-      </IconButton>
+      </IconButton> */}
       <div className="w-screen h-80"> {/* Full width of the viewport */}
         <img
           src={images[currentIndex].src}
@@ -47,9 +47,9 @@ const Banner = () => {
           className="w-full h-full object-cover" 
         />
       </div>
-      <IconButton onClick={handleNext} className="absolute right-0 z-10">
+      {/* <IconButton onClick={handleNext} className="absolute right-0 z-10">
         <ArrowForwardIosIcon />
-      </IconButton>
+      </IconButton> */}
     </div>
   );
 };

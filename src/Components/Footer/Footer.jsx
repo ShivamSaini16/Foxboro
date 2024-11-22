@@ -1,32 +1,104 @@
 import React from 'react'
-import { Box, Grid2, Typography } from '@mui/material'
+import { Box, Grid2, IconButton, Typography } from '@mui/material'
+import SupportAgentIcon from '@mui/icons-material/SupportAgent';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import SecurityIcon from '@mui/icons-material/Security';
+import TonalityIcon from '@mui/icons-material/Tonality';
+import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
+import MailLockIcon from '@mui/icons-material/MailLock';
+import { Facebook, Twitter, Instagram } from '@mui/icons-material';
 
 function Footer() {
     return (
         <div>
-            <Grid2 container>
-                <Grid2 size={{ xs: 12, md: 12, lg: 12 }} pt={45}>
-                    <Box
-                        sx={{
-                            overflow: "hidden",
-                            width: "100vw", // Full viewport width for the container
-                            display: "flex",
-                            alignItems: "center",
-                            position: "relative",
-                        }}
-                    >
-                        <Typography
-                            variant="h6"
-                            component="div"
-                            sx={{
-                                display: "inline-block",
-                                minWidth: "100%", // Make sure text spans at least the viewport
-                                animation: "marquee 20s linear infinite",
-                                whiteSpace: "nowrap",
-                            }}
-                        >
-                            Foxboro Instrument Since 1920 mob. 9457889234
-                        </Typography>
+            <Grid2 container bgcolor={'darkblue'} display={'flex'} mt={5} p={5}>
+                <Grid2 display={'flex'} size={{ lg: 8, md: 8 }} gap={5}>
+                    <Box display={'grid'} gap={6}>
+                        <Box display={'flex'} >
+                            <Box display={'flex'} className='h-[50px] w-[50px]'>
+                                <SupportAgentIcon sx={{ color: 'white', fontSize: '50px' }} />
+                            </Box>
+                            <Typography sx={{ color: 'white' }} variant='h6'>Helpline Number <br />   <Typography component="span" variant="body2" sx={{ fontSize: '0.875rem' }}>
+                                Call +91 9457889234<br />   <Typography component="span" variant="body2" sx={{ fontSize: '0.875rem' }}>
+                                    (Mon-Sun 9am-6pm)
+                                </Typography>
+                            </Typography></Typography>
+                        </Box>
+
+                        <Box display={'flex'}>
+                            <Box display={'flex'} className='h-[50px] w-[50px]'>
+                                <TonalityIcon sx={{ color: 'white', fontSize: '50px' }} />
+                            </Box>
+                            <Typography sx={{ color: 'white' }} variant='h6'>100% ORIGINAL <br />   <Typography component="span" variant="body2" sx={{ fontSize: '0.875rem' }}>
+                                guarantee for all products
+                            </Typography></Typography>
+                        </Box>
+                    </Box>
+                    <Box display={'grid'} gap={10}>
+                        <Box display={'flex'}>
+                            <Box display={'flex'} className='h-[50px] w-[50px]'>
+                                <DateRangeIcon sx={{ color: 'white', fontSize: '50px' }} />
+                            </Box>
+
+                            <Typography sx={{ color: 'white' }} variant='h6'>Return within 7 days <br />   <Typography component="span" variant="body2" sx={{ fontSize: '0.875rem' }}>
+                                of receiving your order
+                            </Typography></Typography>
+                        </Box>
+
+                        <Box display={'flex'}>
+                            <Box display={'flex'} className='h-[50px] w-[50px]'>
+                                <AssignmentTurnedInIcon sx={{ color: 'white', fontSize: '50px' }} />
+                            </Box>
+
+                            <Typography sx={{ color: 'white' }} variant='h6'>Complete products <br />   <Typography component="span" variant="body2" sx={{ fontSize: '0.875rem' }}>
+                                20,00,000+ products
+                            </Typography></Typography>
+                        </Box>
+                    </Box>
+
+                    <Box display={'grid'} gap={10}>
+                        <Box display={'flex'}>
+                            <Box display={'flex'} className='h-[50px] w-[50px]'>
+                                <SecurityIcon sx={{ color: 'white', fontSize: '50px' }} />
+                            </Box>
+                            <Typography sx={{ color: 'white' }} variant='h6'>100% Safe & Secure Payments<br />   <Typography component="span" variant="body2" sx={{ fontSize: '0.875rem' }}>
+                                Pay using secure payments methods
+                            </Typography></Typography>
+                        </Box>
+
+                        <Box display={'flex'}>
+                            <Box display={'flex'} className='h-[50px] w-[50px]'>
+                                <MailLockIcon  sx={{ color: 'white', fontSize: '50px' }} />
+                            </Box>
+                            <Typography sx={{ color: 'white' }} variant='h6'>Buyer Protection<br />   <Typography component="span" variant="body2" sx={{ fontSize: '0.875rem' }}>
+                                Committed to buyer interests
+                            </Typography></Typography>
+                        </Box>
+                    </Box>
+
+                </Grid2>
+                <Grid2 size={{ lg: 4, md: 8 }}>
+                    <Box display={'flex'} flexDirection={'column'} gap={3}>
+                        <Typography sx={{ color: 'white' }} variant='h5'>Experince Foxboro Instrument </Typography>
+                        <Box className='w-80 h-12' bgcolor={'yellowgreen'}>
+                            <img src='apps.png' className="w-full h-full object-cover" />
+                        </Box>
+
+                        <Box pl={7} >
+
+                            <Typography sx={{ color: 'white' }} variant='h5'>Follow us on</Typography>
+                            <Box display="flex" gap={2}>
+                                <IconButton aria-label="Facebook" sx={{ color: 'white' }}>
+                                    <Facebook />
+                                </IconButton>
+                                <IconButton aria-label="Twitter" sx={{ color: 'white' }}>
+                                    <Twitter />
+                                </IconButton>
+                                <IconButton aria-label="Instagram" sx={{ color: 'white' }}>
+                                    <Instagram />
+                                </IconButton>
+                            </Box>
+                        </Box>
                     </Box>
                 </Grid2>
             </Grid2>
@@ -34,26 +106,5 @@ function Footer() {
     )
 }
 
-// CSS styles for the marquee effect
-const styles = `
-@keyframes marquee {
-  0% {
-    transform: translateX(100vw); // Start outside the viewport
-  }
-  100% {
-    transform: translateX(-100%); // Move completely out of the viewport
-  }
-}
-`;
-
-// Add keyframe styles to the document
-const addStyles = () => {
-    const styleSheet = document.createElement("style");
-    styleSheet.type = "text/css";
-    styleSheet.innerText = styles;
-    document.head.appendChild(styleSheet);
-};
-
-addStyles();
 
 export default Footer
