@@ -12,7 +12,7 @@ function Home() {
     const API_URL = "https://fakestoreapi.com/products";
     const [loading, setLoading] = useState(false);
     const [posts, setPosts] = useState([]
-     
+
     );
 
     async function fetchProductData() {
@@ -39,11 +39,11 @@ function Home() {
         <div>
             <Header />
             <Banner />
-            <Grid2 container  spacing={2} className="min-h-[100vh] p-1">
-                <Grid2 item  p={3} xs={12} md={4} lg={2}>
+            <Grid2 container spacing={2} className="min-h-[100vh] p-1">
+                <Grid2 item p={3} xs={12} md={4} lg={2}>
                     <SideBar />
                 </Grid2>
-                <Grid2  size={{lg:9, md:6, sm:12 , xs:12}} className='flex justify-end min-h-[100vh]'>
+                <Grid2 size={{ lg: 9, md: 6, sm: 12, xs: 12 }} className='flex justify-end min-h-[100vh]'>
                     {loading ? <Spinner /> :
                         posts.length > 0 ?
                             (

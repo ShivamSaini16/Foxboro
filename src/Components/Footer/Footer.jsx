@@ -11,7 +11,7 @@ import { Facebook, Twitter, Instagram } from '@mui/icons-material';
 function Footer() {
     return (
         <div>
-            <Grid2 container bgcolor={'darkblue'} display={'flex'} mt={5} p={5}>
+            <Grid2 container bgcolor={'darkblue'} display={'flex'} p={3}>
                 <Grid2 display={'flex'} size={{ lg: 8, md: 8 }} gap={5}>
                     <Box display={'grid'} gap={6}>
                         <Box display={'flex'} >
@@ -24,7 +24,6 @@ function Footer() {
                                 </Typography>
                             </Typography></Typography>
                         </Box>
-
                         <Box display={'flex'}>
                             <Box display={'flex'} className='h-[50px] w-[50px]'>
                                 <TonalityIcon sx={{ color: 'white', fontSize: '50px' }} />
