@@ -78,7 +78,7 @@ function Product({ post }) {
   return (
     <div className='flex flex-col items-center justify-between *
     hover:scale-110 transition duration-100 ease-in shadow-[0_2.8px_2.2px_rgba(0,_0,_0,_0.034),_0_6.7px_5.3px_rgba(0,_0,_0,_0.048),_0_12.5px_10px_rgba(0,_0,_0,_0.06),_0_22.3px_17.9px_rgba(0,_0,_0,_0.072),_0_41.8px_33.4px_rgba(0,_0,_0,_0.086),_0_100px_80px_rgba(0,_0,_0,_0.12)]
-    gap-2  mt-10 rounded-xl border-4'>
+    gap-2  mt-10 rounded-xl border-4 bg-white'>
       <div className='w-full p-0'>
         <Grid2 bgcolor={'orange'} className='h-fit w-fit  rounded-r-md p-1' >
           <Typography color='black' gap={1}>
@@ -99,13 +99,13 @@ function Product({ post }) {
         <Typography variant='h5' className='text-green-400 font-semibold'>$ {post.price}</Typography>
       </Grid2>
       <Grid2 className='flex gap-x-3 p-2 '>
-        <Button variant='outlined'  class='text-white  pr-5 pl-5 pt-1 py-1 rounded-lg border-blue-900 bg-blue-900  hover:bg-orange-500 hover:text-white transition duration-100 ease-in' >Buy Now</Button>
+        <Button variant='outlined'  class='text-white  pr-6 pl-6 pt-2 py-2 rounded-lg border-blue-900 bg-blue-900  hover:bg-orange-500 hover:text-white transition duration-100 ease-in' >Buy Now</Button>
         <Grid2>
           {cart.some((p) => p.id === post.id) ? (
             <Button
               onClick={removeFromCart}
               variant="outlined"
-              class="text-orange-500 border-orange-500 border-2  pr-3 pl-3 pt-1 py-1 rounded-lg hover:bg-orange-500 hover:text-white transition duration-150 ease-in-out"
+              class="text-orange-500 border-orange-500 border-2  pr-4 pl-4 pt-2 py-2 rounded-lg hover:bg-orange-500 hover:text-white transition duration-150 ease-in-out"
 
             >
               Remove Cart
@@ -114,7 +114,7 @@ function Product({ post }) {
             <Button
               onClick={addToCart}
               variant="outlined"
-              class="text-orange-500 border-orange-500 border-2  pr-3 pl-3 pt-1 py-1 rounded-lg hover:bg-orange-500 hover:text-white transition duration-150 ease-in-out"
+              class="text-orange-500 border-orange-500 border-2  pr-4 pl-4 pt-2 py-2 rounded-lg hover:bg-orange-500 hover:text-white transition duration-150 ease-in-out"
             >
               Add To Cart
             </Button>

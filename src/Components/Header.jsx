@@ -38,12 +38,12 @@ const Header = () => {
             <Grid2 container sx={{ bgcolor: '#162F4D', display:'flex', }}>
                 <div className='flex justify-between items-center p-1'>
                     {/* First Section */}
-                    <div style={{ backgroundColor: '#3E8DB7', padding: '5px', borderRadius: '5px' }}>
+                    {/* <div style={{ backgroundColor: '#3E8DB7', padding: '5px', borderRadius: '5px' }}>
                         <p className='text-white'>
                             Welcome to our <br />
                             <span>New Website</span>
                         </p>
-                    </div>
+                    </div> */}
 
                     {/* Second Section (Phone) */}
                     <div className='flex items-center space-x-2 text-cyan-50'>

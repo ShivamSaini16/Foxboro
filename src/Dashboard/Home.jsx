@@ -40,14 +40,14 @@ function Home() {
             <Header />
             <Banner />
             <Grid2 container spacing={2} className="min-h-[100vh] p-1">
-                <Grid2 item p={3} xs={12} md={4} lg={2}>
+                <Grid2 item p={3} className='100vh' size={{ lg: 3, md: 4, sm: 12, xs: 12 }}>
                     <SideBar />
                 </Grid2>
-                <Grid2 size={{ lg: 9, md: 6, sm: 12, xs: 12 }} className='flex justify-end min-h-[100vh]'>
+                <Grid2 size={{ lg: 9, md: 6, sm: 12, xs: 12 }} className='flex justify-center min-h-[100vh]'>
                     {loading ? <Spinner /> :
                         posts.length > 0 ?
                             (
-                                <Grid2 className='grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-7xl space-y-10 space-x-5 min-h-[80vh] bg-white'>
+                                <Grid2 className='grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-7xl space-y-10 space-x-5 h-screen bg-white'>
                                     {posts.map((post) => (
                                         <Product key={post.id} post={post} />
                                     ))}
@@ -60,7 +60,7 @@ function Home() {
                 </Grid2>
                 {/* <WhatsApp /> */}
             </Grid2>
-            <Footer />
+            <Footer/>
         </div>
     );
 }

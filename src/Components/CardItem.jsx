@@ -54,7 +54,7 @@ function CardItem({ item }) {
   </div>
 
   {/* Quantity, Delete, and Total Price Section */}
-  <div className="flex flex-1 justify-between items-center gap-6">
+  <div className="flex  justify-between items-center  gap-6 w-[55%]">
     {/* Quantity Controls */}
     <div className="flex items-center gap-4">
       <div className="flex items-center gap-2 border-2 border-solid border-black bg-white rounded-md px-2 py-1">
