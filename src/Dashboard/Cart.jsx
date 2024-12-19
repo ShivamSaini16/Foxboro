@@ -56,7 +56,7 @@ const Cart = () => {
               </div>
             </div>
           ) : (
-            <div className="text-center">
+            <div className="text-center flex flex-col justify-center h-80">
               <Typography>The cart is empty</Typography>
               <Link to="/">
                 <Button>Shop now</Button>
