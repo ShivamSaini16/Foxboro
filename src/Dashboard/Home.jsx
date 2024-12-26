@@ -6,10 +6,10 @@ import Product from '../Components/Product';
 import { Box, Grid2, Typography } from '@mui/material';
 import SideBar from '../Components/SideBar/SideBar';
 import Banner from '../Components/Banner';
+import { API_URL } from '../Redux/api/client';
 
 
 function Home() {
-    const API_URL = "https://fakestoreapi.com/products";
     const [loading, setLoading] = useState(false);
     const [posts, setPosts] = useState([]
 

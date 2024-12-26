@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SecurityIcon from '@mui/icons-material/Security';
 import MoneyIcon from '@mui/icons-material/Money';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
@@ -7,15 +7,11 @@ import StoreIcon from '@mui/icons-material/Store';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import ProductSide from "./ProductSide";
 import TableProduct from "./TableProduct";
+import { useParams } from "react-router-dom";
+import { oneProductShow } from "../../Redux/api/service";
 
 function AddProduct() {
-    const images = [
-        "https://tse3.mm.bing.net/th?id=OIP.uLs2Shopd4nvVilDdZXMCAHaE8&pid=Api&P=0&h=180",
-        "https://www.frost.com/wp-content/uploads/2022/02/Industrial_automation.png",
-        "https://tse4.mm.bing.net/th?id=OIP.8gT97DD2mi5S_vDCrQUTswAAAA&pid=Api&P=0&h=180",
-        "https://www.frost.com/wp-content/uploads/2022/02/Industrial_automation.png",
-
-    ];
+    
     const [currentIndex, setCurrentIndex] = useState(0);
 
     const content = [
@@ -41,9 +37,30 @@ function AddProduct() {
         },
     ];
 
-   
+    const { id } = useParams(); // Get the product ID from the route
+    const [product, setProduct] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
+    useEffect(() => {
+        // Fetch product details by ID
+        const fetchProduct = async () => {
+            try {
+                const response = await oneProductShow(id);
+                // console.log(response);
+                setProduct(response.product); // Assuming response contains product data
+                setLoading(false);
+            } catch (err) {
+                setError("Failed to fetch product details.");
+                setLoading(false);
+            }
+        };
 
+        if (id) fetchProduct();
+    }, [id]);
+
+    if (loading) return <div>Loading...</div> 
+    else 
     return (
         <div className="flex">
             <div className="w-3/4  p-2 ">
@@ -53,14 +70,15 @@ function AddProduct() {
                         {/* Large Image */}
                         <div className="overflow-hidden rounded-lg h-96 w-auto">
                             <img
-                                src={images[currentIndex]}
-                                alt={`Slide ${currentIndex + 1}`}
+                                src={product?.image[currentIndex]} 
+                                alt={`Slide ${currentIndex + 1}`}                               
                                 className="w-full h-full object-cover transition-transform duration-500 ease-in-out"
                             />
+                            {/* {console.log(product.image)} */}
                         </div>
                         {/* Thumbnails */}
                         <div className="flex space-x-4 mt-4 justify-between">
-                            {images.map((image, index) => (
+                            {product?.image?.map((image, index) => (
                                 <img
                                     key={index}
                                     src={image}
@@ -69,19 +87,20 @@ function AddProduct() {
                                         }`}
                                     onClick={() => setCurrentIndex(index)} // Change the large image
                                 />
-                            ))}
+                            )) || <div>No images available</div>} {/* Optional fallback */}
                         </div>
+
 
                     </div>
                     <div className="flex flex-col gap-4 p-5">
-                        <div className="text-lg font-semibold text-gray-700">🛍️ Product Name</div>
-                        <div className="text-sm text-gray-600">🏭 Manufacturer</div>
-                        <div className="text-sm text-gray-600">📦 Model Name</div>
-                        <div className="text-sm text-gray-600">📝 Description</div>
-                        <div className="text-sm text-gray-600">✨ Key Features</div>
-                        <div className="text-sm text-gray-600">💰 Price</div>
-                        <div className="text-sm text-gray-600">📋 Availability</div>
-                        <div className="text-sm text-gray-600">⭐ Reviews</div>
+                        <div className="text-lg font-semibold text-gray-700">🛍️ Product Name: {product.name}</div>
+                        <div className="text-sm text-gray-600">🏭 Manufacturer: {product.manufacturer.name} </div>
+                        <div className="text-sm text-gray-600">📦 Model Name:{product.modelNo}</div>
+                        <div className="text-sm text-gray-600">📝 Description {product.category.description}</div>
+                        <div className="text-sm text-gray-600">✨ Key Features{product.keyFactors[0]}</div>
+                        <div className="text-sm text-gray-600">💰 Price{product.price}</div>
+                        <div className="text-sm text-gray-600">📋 Availability{product.specifications[0]}</div>
+                        <div className="text-sm text-gray-600">⭐ Reviews{product.review[0]}</div>
                         <Button variant="outlined">Download Datasheet</Button>
                     </div>
                 </div>
@@ -97,11 +116,11 @@ function AddProduct() {
                     ))}
                 </div>
                 <div>
-                    <TableProduct/>
+                    {<TableProduct product={product}></TableProduct>}
                 </div>
 
             </div>
-           
+
             <div>
                 <ProductSide />
             </div>
@@ -109,6 +128,9 @@ function AddProduct() {
         </div>
 
     );
+    // if (error) return <div>{error}</div>;
+
+
 }
 
 export default AddProduct;

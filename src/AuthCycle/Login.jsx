@@ -1,5 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
+import MarkunreadIcon from '@mui/icons-material/Markunread';
+import LocalOfferIcon from '@mui/icons-material/LocalOffer';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import AppleIcon from '@mui/icons-material/Apple';
+import AndroidIcon from '@mui/icons-material/Android';
+import { Grid2 } from "@mui/material";
 
 const Login = () => {
     const [passwordVisible, setPasswordVisible] = useState(false);
@@ -9,6 +16,60 @@ const Login = () => {
     };
 
     return (
+
+        <div>
+            <Grid2
+                container
+                sx={{
+                    bgcolor: '#162F4D',
+                    color: 'white',
+                    padding: '20px',
+                    flexWrap: 'wrap',
+                }}
+            >
+                <div className="flex flex-wrap items-center justify-around w-full space-y-4">
+                    {/* Contact and Offer Section */}
+                    <div className="flex flex-wrap items-center justify-start space-x-10">
+                        {/* Phone Section */}
+                        <div>
+                            <p className='text-lg'>FOXBORO INSTRUMENT COMPANY</p>
+                        </div>
+                        <div className='flex items-center space-x-2'>
+                            <PhoneInTalkIcon sx={{ color: 'white', fontSize: 24 }} />
+                            <p className="text-lg">+91 9457889234</p>
+                        </div>
+
+                        {/* Email Section */}
+                        <div className='flex items-center space-x-2'>
+                            <MarkunreadIcon sx={{ color: 'white', fontSize: 24 }} />
+                            <p className="text-lg">foxboroinstrument.sales@gmail.com</p>
+                        </div>
+
+                        {/* Offer Section */}
+                        <div className='flex items-center space-x-2'>
+                            <LocalOfferIcon sx={{ color: 'white', fontSize: 24 }} />
+                            <p className="text-lg">Offer</p>
+                        </div>
+                        <p className="text-lg">GST Benefit</p>
+                        <p className="text-lg">Become a Seller</p>
+                        <p className="text-lg">Bulk Order</p>
+                        <p className="text-lg">FAQs</p>
+
+                        {/* Shipping Section */}
+                        <div className='flex items-center space-x-2'>
+                            <LocalShippingIcon sx={{ color: 'white', fontSize: 24 }} />
+                            <p className="text-lg">Track Order</p>
+                        </div>
+
+                        {/* App Icons */}
+                        <div className='flex items-center space-x-2'>
+                            <AppleIcon sx={{ color: 'white', fontSize: 24 }} />
+                            <AndroidIcon sx={{ color: 'white', fontSize: 24 }} />
+                        </div>
+                    </div>
+                </div>
+            </Grid2>
+
             <div className="flex items-center justify-center min-h-screen bg-gray-100">
                 <div className="w-full max-w-md p-8 bg-gray-100 shadow-lg rounded-lg space-y-6">
                     {/* Company Logo */}
@@ -100,7 +161,7 @@ const Login = () => {
                     </div>
                 </div>
             </div>
-
+        </div>
     );
 };
 

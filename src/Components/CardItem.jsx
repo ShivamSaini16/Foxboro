@@ -10,19 +10,19 @@ function CardItem({ item }) {
 
   // Remove item from cart
   const removeFromCart = () => {
-    dispatch(remove(item.id)); // Dispatch remove action
+    dispatch(remove(item._id)); // Dispatch remove action
     toast.error('Item removed');
   };
 
   // Increase quantity
   const increaseQuantity = () => {
-    dispatch(increase(item.id)); // Dispatch increase action
+    dispatch(increase(item._id)); // Dispatch increase action
   };
 
   // Decrease quantity
   const decreaseQuantity = () => {
     if (item.quantity > 1) {
-      dispatch(decrease(item.id)); // Dispatch decrease action
+      dispatch(decrease(item._id)); // Dispatch decrease action
     } else {
       toast.error('Minimum quantity is 1');
     }
@@ -37,7 +37,7 @@ function CardItem({ item }) {
     {/* Image Section */}
     <div className="h-[90px] w-[90px] flex flex-shrink-0 justify-center items-center">
       <img
-        src={item.image}
+        src={item.image[0]}
         alt="Item"
         className="h-full  object-contain rounded-md border border-gray-300"
       />
@@ -45,9 +45,9 @@ function CardItem({ item }) {
 
     {/* Content Section */}
     <div className="flex flex-col justify-center  gap-2">
-      <h1 className="font-bold text-lg">{item.title.split(' ').slice(0, 4).join(' ') + '...'}</h1>
+      <h1 className="font-bold text-lg">{item.name?.split(' ').slice(0, 4).join(' ') + '...'}</h1>
       <p className="text-sm text-gray-600 break-words">
-        {item.description.split(' ').slice(0, 5).join(' ') + '...'}
+        {item.longDescription?.split(' ').slice(0, 5).join(' ') + '...'}
       </p>
       <Typography className="text-green-600 font-medium">${item.price}</Typography>
     </div>

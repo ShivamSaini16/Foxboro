@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+
 export const CartSlice = createSlice({
   name: "cart",
   initialState: {
@@ -9,7 +10,7 @@ export const CartSlice = createSlice({
     // Add item to cart
     add: (state, action) => {
       // Check if item already exists
-      const existingItem = state.items.find(item => item.id === action.payload.id);
+      const existingItem = state.items.find(item => item._id === action.payload.id);
       if (existingItem) {
         existingItem.quantity += 1; // Increment quantity if item exists
       } else {
@@ -18,18 +19,18 @@ export const CartSlice = createSlice({
     },
     // Remove item from cart
     remove: (state, action) => {
-      state.items = state.items.filter(item => item.id !== action.payload); // Filter out the item
+      state.items = state.items.filter(item => item._id !== action.payload); // Filter out the item
     },
     // Increase item quantity
     increase: (state, action) => {
-      const item = state.items.find(item => item.id === action.payload);
+      const item = state.items.find(item => item._id === action.payload);
       if (item) {
         item.quantity += 1; // Increment quantity
       }
     },
     // Decrease item quantity
     decrease: (state, action) => {
-      const item = state.items.find(item => item.id === action.payload);
+      const item = state.items.find(item => item._id === action.payload);
       if (item && item.quantity > 1) {
         item.quantity -= 1; // Decrement quantity if it's greater than 1
       }

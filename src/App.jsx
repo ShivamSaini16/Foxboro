@@ -10,6 +10,7 @@ const Banner = lazy(()=> import("./Components/Banner"))
 const AddProduct = lazy(()=> import("./Dashboard/ProductDetail/AddProduct"))
 const CheckOut = lazy(()=> import("./Dashboard/CheckOut"))
 const ForgotPwd = lazy(()=>import("./AuthCycle/ForgotPwd"))
+const AdminAddProduct = lazy(()=>import("./Dashboard/adminAddProduct"))
 
 function App() {
   // Move useRoutes inside the component body
@@ -20,9 +21,10 @@ function App() {
     { path: '/Cart', element: <Cart /> },
     { path: '/SideBar', element: <SideBar /> },
     { path: '/banner', element: <Banner /> },
-    { path: '/AddProduct', element: <AddProduct /> },
+    { path: '/AddProduct/:id', element: <AddProduct /> },
     { path: '/checkout', element: <CheckOut /> },
-    { path: '/ForgotPwd', element: <ForgotPwd /> }
+    { path: '/ForgotPwd', element: <ForgotPwd /> },
+    { path: '/adminAddProduct', element: <AdminAddProduct /> }
   ]);
 
   return (

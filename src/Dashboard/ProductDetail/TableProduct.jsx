@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 
-function TableProduct() {
+function TableProduct({product}) {
     const [activeTab, setActiveTab] = useState("Specifications");
 
     const specifications = [
-        { label: "Type of Product", value: "Spray Gun" },
+        { label: "Type of Product", value: product?.category?.name || "not Available" },
         { label: "Model No.", value: "SG-1234" },
         { label: "Application", value: "Industrial Coating" },
         { label: "Material", value: "Aluminum" },
@@ -21,10 +21,12 @@ function TableProduct() {
   hobbyists, it ensures durability and precise performance. The package includes all necessary components.`;
 
 
+
+
     return (
         <div>
             <div className="bg-gray-50 p-7 rounded-lg shadow-md max-w-9xl mx-auto">
-                {/* Tabs */}
+                {console.log(product,"table product")}
                 <div className="flex border-b mb-4">
                     <button
                         className={`flex-1 py-2 text-center font-medium ${activeTab === "Specifications"
@@ -77,7 +79,7 @@ function TableProduct() {
 
                     {activeTab === "Description" && (
                         <div className="h-full text-gray-700 leading-relaxed p-2">
-                            <p>{description}</p>
+                            <p>{product.longDescription}</p>
                         </div>
                     )}
                 </div>

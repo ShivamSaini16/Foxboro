@@ -35,44 +35,54 @@ const Header = () => {
     // console.log("-------------------", cart)
     return (
         <div>
-            <Grid2 container sx={{ bgcolor: '#162F4D', display:'flex', }}>
-                <div className='flex justify-between items-center p-1'>
-                    {/* First Section */}
-                    {/* <div style={{ backgroundColor: '#3E8DB7', padding: '5px', borderRadius: '5px' }}>
-                        <p className='text-white'>
-                            Welcome to our <br />
-                            <span>New Website</span>
-                        </p>
-                    </div> */}
+             <Grid2
+                container
+                sx={{
+                    bgcolor: '#162F4D',
+                    color: 'white',
+                    padding: '20px',
+                    flexWrap: 'wrap',
+                }}
+            >
+                <div className="flex flex-wrap items-center justify-around w-full space-y-4">
+                    {/* Contact and Offer Section */}
+                    <div className="flex flex-wrap items-center justify-start space-x-10">
+                     
+                        <div className='flex items-center space-x-2'>
+                            <PhoneInTalkIcon sx={{ color: 'white', fontSize: 24 }} />
+                            <p className="text-lg">+91 9457889234</p>
+                        </div>
 
-                    {/* Second Section (Phone) */}
-                    <div className='flex items-center space-x-2 text-cyan-50'>
-                        <PhoneInTalkIcon sx={{ color: 'white' }} />
-                        <p>+91 9457889234</p>
+                        {/* Email Section */}
+                        <div className='flex items-center space-x-2'>
+                            <MarkunreadIcon sx={{ color: 'white', fontSize: 24 }} />
+                            <p className="text-lg">foxboroinstrument.sales@gmail.com</p>
+                        </div>
+
+                        {/* Offer Section */}
+                        <div className='flex items-center space-x-2'>
+                            <LocalOfferIcon sx={{ color: 'white', fontSize: 24 }} />
+                            <p className="text-lg">Offer</p>
+                        </div>
+                        <p className="text-lg">GST Benefit</p>
+                        <p className="text-lg">Become a Seller</p>
+                        <p className="text-lg">Bulk Order</p>
+                        <p className="text-lg">FAQs</p>
+
+                        {/* Shipping Section */}
+                        <div className='flex items-center space-x-2'>
+                            <LocalShippingIcon sx={{ color: 'white', fontSize: 24 }} />
+                            <p className="text-lg">Track Order</p>
+                        </div>
+
+                        {/* App Icons */}
+                        <div className='flex items-center space-x-2'>
+                            <AppleIcon sx={{ color: 'white', fontSize: 24 }} />
+                            <AndroidIcon sx={{ color: 'white', fontSize: 24 }} />
+                        </div>
                     </div>
-
-                    {/* Third Section (Email) */}
-                    <div className='flex items-center space-x-2 text-cyan-50'>
-                        <MarkunreadIcon sx={{ color: 'white' }} />
-                        <p>foxboroinstrument.sales@gmail.com</p>
-                    </div>
-                </div>
-
-                {/* Fourth Section (Offer and other items) */}
-                <div className='flex items-center justify-start text-cyan-50 space-x-4 p-4'>
-                    <LocalOfferIcon sx={{ color: 'white' }} />
-                    <p>Offer</p>
-                    <p>GST Benefit</p>
-                    <p>Become a seller</p>
-                    <p>Bulk Order</p>
-                    <p>FAQs</p>
-                    <LocalShippingIcon sx={{ color: 'white' }} />
-                    <p>Track Order</p>
-                    <AppleIcon sx={{ color: 'white' }} />
-                    <AndroidIcon sx={{ color: 'white' }} />
                 </div>
             </Grid2>
-
             <Grid2 container display={'flex'} justifyContent={'space-evenly'} bgcolor={'#3c3154'} p={2} >
                 <img src='log.jpg' alt='img' style={{ width: '7%', height: '7%' }} />
                 <Typography variant='h4' color='white'>Foxboro Instrument Company</Typography>
