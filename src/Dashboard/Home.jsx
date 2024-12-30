@@ -7,13 +7,14 @@ import { Box, Grid2, Typography } from '@mui/material';
 import SideBar from '../Components/SideBar/SideBar';
 import Banner from '../Components/Banner';
 import { API_URL } from '../Redux/api/client';
+import { useSelector } from 'react-redux';
 
 
 function Home() {
+    const key=useSelector((state)=>state.search.value);
     const [loading, setLoading] = useState(false);
-    const [posts, setPosts] = useState([]
-
-    );
+    const [posts, setPosts] = useState([]);
+    const [filteredPosts, setFilteredPosts]=useState([]);
 
     async function fetchProductData() {
         setLoading(true);
@@ -30,13 +31,22 @@ function Home() {
     }
 
     useEffect(() => {
-
         fetchProductData();
-
     }, []); // Only fetch data if there are no posts in the state
 
+    useEffect(()=>{
+      if(key.trim()==""){
+        setFilteredPosts(posts);
+        return;
+      }
+      else{
+        setFilteredPosts(posts.filter((post) => post.name.toLowerCase().includes(key.toLowerCase())));
+      }
+
+    },[key,posts])
     return (
         <div>
+            {console.log(filteredPosts)}
             <Header />
             <Banner />
             <Grid2 container spacing={2} className="min-h-[100vh] p-1">
@@ -45,16 +55,16 @@ function Home() {
                 </Grid2>
                 <Grid2 size={{ lg: 9, md: 6, sm: 12, xs: 12 }} className='flex justify-center min-h-[100vh]'>
                     {loading ? <Spinner /> :
-                        posts.length > 0 ?
+                        filteredPosts.length > 0 ?
                             (
                                 <Grid2 className='grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-7xl space-y-10 space-x-5 h-screen bg-white'>
-                                    {posts.map((post) => (
+                                    {filteredPosts.map((post) => (
                                         <Product key={post.id} post={post} />
                                     ))}
                                 </Grid2>
                             ) :
                             <Grid2 className='flex justify-center items-center'>
-                                <Typography>No Data Found</Typography>
+                                <Typography variant='h1'>No Data Found</Typography>
                             </Grid2>
                     }
                 </Grid2>

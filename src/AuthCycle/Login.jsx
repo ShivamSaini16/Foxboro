@@ -7,10 +7,37 @@ import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import AppleIcon from '@mui/icons-material/Apple';
 import AndroidIcon from '@mui/icons-material/Android';
 import { Grid2 } from "@mui/material";
+import {userLogin} from '../Redux/api/service.js'
+import{useNavigate} from 'react-router-dom'
+import {useDispatch} from 'react-redux';
+import { setToken } from "../Redux/slices/AuthSlice.jsx";
 
 const Login = () => {
+    const navigate = useNavigate();
+    const dispatch =useDispatch();
     const [passwordVisible, setPasswordVisible] = useState(false);
+    const[loginData, setLoginData]=useState({
+        email:"",
+        password:""
+    })
 
+    const handleFormData=(e)=>{
+     const{name,value}=e.target;
+    setLoginData((prev)=>({...prev,[name]:value}));
+    }
+
+    const handleFormSubmit=async(e)=>{
+    e.preventDefault();
+     try {
+        const response= await userLogin(loginData);
+        dispatch(setToken(response.token));
+        if(response.isAdmin){
+            navigate('/admin')
+        }
+     } catch (error) {
+        console.log(error)
+     }
+    }
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
     };
@@ -88,7 +115,7 @@ const Login = () => {
                     </div>
 
                     {/* Login Form */}
-                    <form className="space-y-4">
+                    <form className="space-y-4" onSubmit={handleFormSubmit}>
                         {/* Email Input */}
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
@@ -98,6 +125,8 @@ const Login = () => {
                                 type="email"
                                 id="email"
                                 name="email"
+                                value={loginData.email}
+                                onChange={(e)=>{handleFormData(e)}}
                                 placeholder="Enter your email"
                                 className="w-full px-4 py-2 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                                 required
@@ -113,6 +142,8 @@ const Login = () => {
                                 type={passwordVisible ? "text" : "password"}
                                 id="password"
                                 name="password"
+                                value={loginData.password}
+                                onChange={(e)=>{handleFormData(e)}}
                                 placeholder="Enter your password"
                                 className="w-full px-4 py-2 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                                 required

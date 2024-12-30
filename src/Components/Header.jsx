@@ -3,15 +3,19 @@ import SearchIcon from "@mui/icons-material/Search";
 import { Link, NavLink } from 'react-router-dom';
 import { Grid2, IconButton, InputAdornment, MenuItem, Select, TextField, Typography, InputLabel, FormControl } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { useSelector } from 'react-redux';
+import {  useSelector } from 'react-redux';
 import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
 import MarkunreadIcon from '@mui/icons-material/Markunread';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
+import { useDispatch } from 'react-redux';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import AppleIcon from '@mui/icons-material/Apple';
 import AndroidIcon from '@mui/icons-material/Android';
+import { setSearchValue } from '../Redux/slices/CounterSlice';
 
 const Header = () => {
+    const [inputVal, setInputVal] = useState("");
+    const dispatch = useDispatch();
     // Define state for category and search input
     const { items } = useSelector((state) => state?.cart)
     console.log("----cartSTATE--", items)
@@ -30,12 +34,17 @@ const Header = () => {
         console.log('Search Text:', searchText);
     };
 
+    //handle the input field of search 
+    const handleInput = (e) => {
+        setInputVal(e.target.value);
+        dispatch(setSearchValue(e.target.value));
+     }
 
     // const cart = useSelector((state) => state)
     // console.log("-------------------", cart)
     return (
         <div>
-             <Grid2
+            <Grid2
                 container
                 sx={{
                     bgcolor: '#162F4D',
@@ -47,7 +56,7 @@ const Header = () => {
                 <div className="flex flex-wrap items-center justify-around w-full space-y-4">
                     {/* Contact and Offer Section */}
                     <div className="flex flex-wrap items-center justify-start space-x-10">
-                     
+
                         <div className='flex items-center space-x-2'>
                             <PhoneInTalkIcon sx={{ color: 'white', fontSize: 24 }} />
                             <p className="text-lg">+91 9457889234</p>
@@ -88,6 +97,8 @@ const Header = () => {
                 <Typography variant='h4' color='white'>Foxboro Instrument Company</Typography>
                 <Grid2 size={{ xs: 12, md: 12, lg: 5 }} display="flex" alignItems="center">
                     <FormControl fullWidth variant="outlined" size="small" sx={{ height: '40px' }}>
+
+
                         {/* InputLabel component */}
                         <InputLabel sx={{ color: 'white' }}></InputLabel>
                         <TextField
@@ -95,6 +106,10 @@ const Header = () => {
                             placeholder="Search..."
                             fullWidth
                             size="small"
+                            name='inputVal'
+                            value={inputVal}
+                            onChange={(e) => handleInput(e)}
+
                             sx={{
                                 height: '40px',
                                 input: { color: 'white' }, // Text color
@@ -115,24 +130,23 @@ const Header = () => {
                                 startAdornment: (
                                     <InputAdornment position="start">
                                         {/* Dropdown (Select) Component */}
-                                        <Select
-                                            value={category} // Controlled select input
+                                        {/* <Select
+                                            value={category} 
                                             onChange={handleCategoryChange}
                                             sx={{
                                                 color: 'white',
                                                 borderColor: 'white',
-                                                height: '40px', // Adjust height
+                                                height: '40px', 
                                                 '& .MuiSvgIcon-root': {
                                                     color: 'white',
                                                 },
                                             }}
                                         >
-                                            {/* Sample dropdown items */}
                                             <MenuItem value="All Categories">All Categories</MenuItem>
                                             <MenuItem value="Electronics">Electronics</MenuItem>
                                             <MenuItem value="Furniture">Furniture</MenuItem>
                                             <MenuItem value="Clothing">Clothing</MenuItem>
-                                        </Select>
+                                        </Select> */}
                                     </InputAdornment>
                                 ),
                                 endAdornment: (

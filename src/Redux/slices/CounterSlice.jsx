@@ -38,6 +38,22 @@ export const CartSlice = createSlice({
   }
 });
 
+const initialSearch={
+  value:"",
+}
+
+const searchSlice=createSlice({
+  name:'search',
+  initialState:initialSearch,
+  reducers:{
+    setSearchValue:(state,action)=>{
+      state.value=action.payload;
+    }
+  }
+});
+
+export const {setSearchValue}=searchSlice.actions;
+export const searchReducer=searchSlice.reducer;
 // Export the actions
 export const { add, remove, increase, decrease } = CartSlice.actions;
 

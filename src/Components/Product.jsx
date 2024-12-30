@@ -19,6 +19,7 @@ function Product({ post }) {
 
   // Fetch product details based on `id` when in details view
   useEffect(() => {
+    
     if (id) {
       const fetchProduct = async () => {
         try {
@@ -35,6 +36,7 @@ function Product({ post }) {
     }
   }, [id]);
 
+ 
   // Handlers for cart actions
   const addToCart = () => {
     dispatch(add(post));
